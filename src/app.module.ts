@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import env from './config/env'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { UserEntity } from './user/infra/database/orm/user.entity'
 
 @Module({
   imports: [
@@ -18,12 +19,12 @@ import { TypeOrmModule } from '@nestjs/typeorm'
         username: configService.get<string>('MYSQL_USERNAME'),
         password: configService.get<string>('MYSQL_PASSWORD'),
         database: configService.get<string>('MYSQL_DATABASE'),
-        entities: [],
+        entities: [UserEntity],
         synchronize: configService.get<boolean>('MYSQL_SYNCRONIZE')
       }),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([])
+    TypeOrmModule.forFeature([UserEntity])
   ],
   controllers: []
 })
