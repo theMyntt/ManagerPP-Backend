@@ -9,7 +9,7 @@ async function bootstrap() {
 
   Logger.log(`Application running at localhost:${process.env.NEST_PORT}`)
   Logger.log(
-    `================================= ${process.env.NEST_PRODUCTION ? 'PRODUCTION' : 'DEVELOPMENT'} =================================`
+    `================================= ${process.env.NEST_PRODUCTION === 'true' ? 'PRODUCTION' : 'DEVELOPMENT'} =================================`
   )
   Logger.log(
     `MySQL connected at: ${process.env.MYSQL_HOST}:${process.env.MYSQL_PORT}`
