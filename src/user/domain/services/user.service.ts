@@ -7,11 +7,15 @@ import { UserEntity } from '@src/user/infra/database/orm/user.entity'
 export class UserService {
   constructor(
     @Inject('I_USER_REPOSITORY')
-    private readonly repo: UserRepository<UserEntity>
+    private readonly repo: UserRepository<UserEntity | any>
   ) {}
 
   async create(dto: UserEntity): Promise<IResult> {
-    if (await this.repo.find(dto)) return
+    if (await this.repo.find({ email: dto.email }))
+      return {
+        message: 'User already exists',
+        statusCode: 409
+      }
 
     await this.repo.create(dto)
 
