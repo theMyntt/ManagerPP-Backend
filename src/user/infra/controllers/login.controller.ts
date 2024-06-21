@@ -2,7 +2,7 @@ import { Body, Controller, Inject, Post } from '@nestjs/common'
 import { IControllerContract } from '@shared/contracts/controller.contract'
 import { IResult } from '@shared/core/result.core'
 import { InternalServerError } from '@shared/errors/common.error'
-import { LoginUserDTO } from '@src/user/app/dto/login.dto'
+import { LoginUserDTO } from '@src/user/infra/dto/login.dto'
 import {
   ILoginResponse,
   LoginUseCase

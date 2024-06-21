@@ -1,5 +1,5 @@
 import { IUseCaseContract } from '@shared/contracts/usecase.contract'
-import { LoginUserDTO } from '../dto/login.dto'
+import { LoginUserDTO } from '../../infra/dto/login.dto'
 import { InvalidInformations } from '../errors/create.error'
 import { IResult } from '@shared/core/result.core'
 import { UserService } from '@src/user/domain/services/user.service'

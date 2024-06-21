@@ -1,5 +1,5 @@
 import { IUseCaseContract } from '@shared/contracts/usecase.contract'
-import { CreateUserDTO } from '../dto/create.dto'
+import { CreateUserDTO } from '../../infra/dto/create.dto'
 import { IResult } from '@shared/core/result.core'
 import { Inject } from '@nestjs/common'
 import { UserService } from '@src/user/domain/services/user.service'

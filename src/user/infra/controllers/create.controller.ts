@@ -2,7 +2,7 @@ import { Body, Controller, Inject, Post, RequestMapping } from '@nestjs/common'
 import { IControllerContract } from '@shared/contracts/controller.contract'
 import { IResult } from '@shared/core/result.core'
 import { InternalServerError } from '@shared/errors/common.error'
-import { CreateUserDTO } from '@src/user/app/dto/create.dto'
+import { CreateUserDTO } from '@src/user/infra/dto/create.dto'
 import { CreateUseCase } from '@src/user/app/usecases/create.usecase'
 
 @Controller('user')
