@@ -23,6 +23,11 @@ async function bootstrap() {
   Logger.log(
     `================================= ${env.NEST_PRODUCTION ? 'PRODUCTION' : 'DEVELOPMENT'} =================================`
   )
+
+  if (!env.NEST_PRODUCTION) {
+    Logger.log(`Swagger mapped at localhost:${env.NEST_PORT}/swagger-ui`)
+  }
+
   Logger.log(`MySQL connected at: ${env.MYSQL_HOST}:${env.MYSQL_PORT}`)
   Logger.log(`MySQL database: ${env.MYSQL_DATABASE}`)
   Logger.log(`MySQL connected user: ${env.MYSQL_USERNAME}`)
