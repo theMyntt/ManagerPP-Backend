@@ -1,5 +1,7 @@
 # Manager++ API
 
+A system for employee management.
+
 - API for Manager++ system
 - Developed with NestJS
 
@@ -20,7 +22,7 @@
 
 - Clone this repo
 - Install the dependencies with `yarn install`
-- Configure your enviroments variable in `.env`
+- Configure your enviroments variable in `.env.local` for local development, `.env.prod` for deploy and `.env.test` for e2e tests
 - Start project with `yarn start`
 
 ## Documentation
