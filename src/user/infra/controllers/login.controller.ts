@@ -7,8 +7,10 @@ import {
   ILoginResponse,
   LoginUseCase
 } from '@src/user/app/usecases/login.usecase'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('user')
+@ApiTags('User Management')
 export class LoginController
   implements IControllerContract<LoginUserDTO, ILoginResponse | IResult>
 {
@@ -18,6 +20,8 @@ export class LoginController
   ) {}
 
   @Post('v1/login')
+  @ApiResponse({ status: 201, description: 'The user has been found' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   async perform(@Body() dto: LoginUserDTO): Promise<ILoginResponse | IResult> {
     try {
       return this.useCase.run(dto)
