@@ -17,7 +17,7 @@ export class CreateController
   ) {}
 
   @Post('v1/new')
-  @ApiResponse({ status: 200, description: 'The user has been created' })
+  @ApiResponse({ status: 201, description: 'The user has been created' })
   @ApiResponse({ status: 409, description: 'User already exists' })
   async perform(@Body() dto: CreateUserDTO): Promise<IResult> {
     try {
