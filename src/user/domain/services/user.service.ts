@@ -7,7 +7,7 @@ import { UserEntity } from '@src/user/infra/database/orm/user.entity'
 export class UserService {
   constructor(
     @Inject('I_USER_REPOSITORY')
-    private readonly repo: UserRepository<any, IResult>
+    private readonly repo: UserRepository<UserEntity>
   ) {}
 
   async create(dto: UserEntity): Promise<IResult> {
