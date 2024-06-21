@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsString } from 'class-validator'
+import {
+  IsNotEmpty,
+  IsString,
+  ValidationError,
+  validateSync
+} from 'class-validator'
 
 export class CreateUserDTO {
   @IsNotEmpty()
@@ -12,4 +17,8 @@ export class CreateUserDTO {
   @IsNotEmpty()
   @IsString()
   password!: string
+
+  validate(): ValidationError[] {
+    return validateSync(this)
+  }
 }
