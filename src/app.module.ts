@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import env from './config/env'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { UserEntity } from './user/infra/database/orm/user.entity'
+import { UserEntity } from './user/infra/entities/user.entity'
 import { UserModule } from './user/infra/user.module'
 
 @Module({

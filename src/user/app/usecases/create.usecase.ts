@@ -4,7 +4,7 @@ import { IResult } from '@shared/core/result.core'
 import { Inject } from '@nestjs/common'
 import { UserService } from '@src/user/domain/services/user.service'
 import { InvalidInformations } from '../errors/create.error'
-import { UserEntity } from '@src/user/infra/database/orm/user.entity'
+import { UserEntity } from '@src/user/infra/entities/user.entity'
 import { UUID } from '@shared/utils/uuid.util'
 import { StringUtil } from '@shared/utils/string.util'
 

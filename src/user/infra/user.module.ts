@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { UserRepository } from './repositories/user.repository'
-import { UserEntity } from './database/orm/user.entity'
+import { UserEntity } from './entities/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { CreateUseCase } from '../app/usecases/create.usecase'
 import { UserService } from '../domain/services/user.service'

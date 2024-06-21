@@ -1,5 +1,5 @@
 import { IRepositoryContract } from '@shared/contracts/repository.contract'
-import { UserEntity } from '@src/user/infra/database/orm/user.entity'
+import { UserEntity } from '@src/user/infra/entities/user.entity'
 
 export interface IUserRepository<I, O>
   extends IRepositoryContract<I, O | UserEntity | Array<UserEntity>> {

@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm'
 import { IUserRepository } from '@src/user/domain/repositories/user.repository'
-import { UserEntity } from '../database/orm/user.entity'
+import { UserEntity } from '../entities/user.entity'
 import { Repository } from 'typeorm'
 import { IResult } from '@shared/core/result.core'
 
