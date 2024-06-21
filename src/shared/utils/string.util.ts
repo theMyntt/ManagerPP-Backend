@@ -34,4 +34,25 @@ export class StringUtil {
   static special(str: string) {
     return str.replace(/[^a-zA-Z0-9 ]/g, '')
   }
+
+  /**
+   * This method generates a random string of 7 characters.
+   * The generated string consists of uppercase letters and numbers.
+   *
+   * @returns A random string of 7 characters.
+   *
+   * @example
+   * ```typescript
+   * const randomString = StringUtil.generate();
+   * console.log(randomString); // Output: "A1B2C3D"
+   * ```
+   */
+  static generate(): string {
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let result = ''
+    for (let i = 0; i < 7; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length))
+    }
+    return result
+  }
 }
