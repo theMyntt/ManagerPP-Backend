@@ -1,10 +1,12 @@
-export default () => ({
-  NEST_PORT: parseInt(process.env.NEST_PORT, 10) || 3000,
-  NEST_PRODUCTION: process.env.NEST_PRODUCTION === 'true',
-  MYSQL_PORT: parseInt(process.env.MYSQL_PORT, 10) || 3306,
-  MYSQL_HOST: process.env.MYSQL_HOST || 'localhost',
-  MYSQL_USERNAME: process.env.MYSQL_USERNAME || 'root',
-  MYSQL_PASSWORD: process.env.MYSQL_PASSWORD || '',
-  MYSQL_DATABASE: process.env.MYSQL_DATABASE || 'manager_db',
-  MYSQL_SYNCRONIZE: process.env.MYSQL_SYNCRONIZE === 'true'
-})
+import { get } from 'env-var'
+
+export const env = {
+  NEST_PORT: get('NEST_PORT').default(3000).asInt(),
+  NEST_PRODUCTION: get('NEST_PRODUCTION').default('false').asBool(),
+  MYSQL_PORT: get('MYSQL_PORT').required().asInt(),
+  MYSQL_HOST: get('MYSQL_HOST').required().asString(),
+  MYSQL_USERNAME: get('MYSQL_USERNAME').required().asString(),
+  MYSQL_PASSWORD: get('MYSQL_PASSWORD').default('').asString(),
+  MYSQL_DATABASE: get('MYSQL_DATABASE').required().asString(),
+  MYSQL_SYNCRONIZE: get('MYSQL_SYNCRONIZE').default('true').asBool()
+}
