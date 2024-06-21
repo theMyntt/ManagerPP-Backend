@@ -11,19 +11,11 @@ export class UserService {
     private readonly repo: UserRepository<UserEntity | any>
   ) {}
 
-  async create(dto: UserEntity): Promise<IResult> {
-    if (await this.repo.find({ email: dto.email }))
-      return {
-        message: 'User already exists',
-        statusCode: 409
-      }
+  async create(dto: UserEntity): Promise<boolean> {
+    if (await this.repo.find({ email: dto.email })) return false
 
     await this.repo.create(dto)
-
-    return {
-      message: 'User created',
-      statusCode: 200
-    }
+    return true
   }
 
   async find(dto: LoginUserDTO): Promise<UserEntity> {

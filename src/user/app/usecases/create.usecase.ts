@@ -8,13 +8,19 @@ import { UserEntity } from '@src/user/infra/database/orm/user.entity'
 import { UUID } from '@shared/utils/uuid.util'
 import { StringUtil } from '@shared/utils/string.util'
 
-export class CreateUseCase implements IUseCaseContract<CreateUserDTO, IResult> {
+export type TCreateUserResponse = IResult & {
+  access_code: string
+}
+
+export class CreateUseCase
+  implements IUseCaseContract<CreateUserDTO, TCreateUserResponse | IResult>
+{
   constructor(
     @Inject(UserService)
     private readonly service: UserService
   ) {}
 
-  async run(dto: CreateUserDTO): Promise<IResult> {
+  async run(dto: CreateUserDTO): Promise<TCreateUserResponse | IResult> {
     for (let element in dto) {
       if (element == null) {
         return new InvalidInformations().new()
@@ -31,6 +37,19 @@ export class CreateUseCase implements IUseCaseContract<CreateUserDTO, IResult> {
     entity.createdAt = new Date()
     entity.updatedAt = new Date()
 
-    return this.service.create(entity)
+    const brute = await this.service.create(entity)
+
+    if (!brute) {
+      return {
+        message: 'User already exists',
+        statusCode: 409
+      }
+    }
+
+    return {
+      message: 'User created',
+      statusCode: 200,
+      access_code: entity.access_code
+    }
   }
 }
