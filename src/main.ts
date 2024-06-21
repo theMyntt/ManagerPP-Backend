@@ -2,9 +2,20 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { Logger } from '@nestjs/common'
 import { env } from '@config/env'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+
+  if (!env.NEST_PRODUCTION) {
+    const config = new DocumentBuilder()
+      .setTitle('Manager++ API')
+      .setDescription('A system for employees management')
+      .setVersion('0.0.1')
+      .build()
+    const document = SwaggerModule.createDocument(app, config)
+    SwaggerModule.setup('swagger-ui', app, document)
+  }
 
   await app.listen(process.env.NEST_PORT)
 
