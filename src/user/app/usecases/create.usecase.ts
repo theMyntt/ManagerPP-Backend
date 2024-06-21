@@ -6,6 +6,7 @@ import { UserService } from '@src/user/domain/services/user.service'
 import { InvalidInformations } from '../errors/create.error'
 import { UserEntity } from '@src/user/infra/database/orm/user.entity'
 import { UUID } from '@shared/utils/uuid.util'
+import { StringUtil } from '@shared/utils/string.util'
 
 export class CreateUseCase implements IUseCaseContract<CreateUserDTO, IResult> {
   constructor(
@@ -23,6 +24,7 @@ export class CreateUseCase implements IUseCaseContract<CreateUserDTO, IResult> {
     const entity = new UserEntity()
 
     entity.id = UUID.generate()
+    entity.access_code = StringUtil.generate()
     entity.email = dto.email.toLowerCase()
     entity.password = dto.password
     entity.name = dto.name.toUpperCase()
