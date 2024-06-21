@@ -4,10 +4,11 @@ import { UserEntity } from './database/orm/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { CreateUseCase } from '../app/usecases/create.usecase'
 import { UserService } from '../domain/services/user.service'
+import { CreateController } from './controllers/create.controller'
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  controllers: [],
+  controllers: [CreateController],
   providers: [
     { provide: 'I_USER_REPOSITORY', useClass: UserRepository },
     { provide: 'I_USER_ENTITY', useClass: UserEntity },
