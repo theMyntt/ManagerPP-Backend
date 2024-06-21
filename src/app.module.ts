@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import env from './config/env'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserEntity } from './user/infra/database/orm/user.entity'
+import { UserModule } from './user/infra/user.module'
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { UserEntity } from './user/infra/database/orm/user.entity'
       }),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([UserEntity])
+    UserModule
   ],
   controllers: []
 })
