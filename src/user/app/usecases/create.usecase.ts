@@ -21,12 +21,6 @@ export class CreateUseCase
   ) {}
 
   async run(dto: CreateUserDTO): Promise<TCreateUserResponse | IResult> {
-    for (let element in dto) {
-      if (element == null) {
-        return new InvalidInformations().new()
-      }
-    }
-
     const entity = new UserEntity()
 
     entity.id = UUID.generate()

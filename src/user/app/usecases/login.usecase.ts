@@ -23,12 +23,6 @@ export class LoginUseCase
   ) {}
 
   async run(dto: LoginUserDTO): Promise<ILoginResponse | IResult> {
-    for (let element in LoginUserDTO) {
-      if (element == null) {
-        return new InvalidInformations().new()
-      }
-    }
-
     const user = await this.service.find(dto)
     if (!user) return new NotFound().new()
 
