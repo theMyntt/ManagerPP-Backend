@@ -18,7 +18,7 @@ export class CreateUserDTO {
   @IsString()
   password!: string
 
-  validate(): ValidationError[] {
+  validate?(): ValidationError[] {
     return validateSync(this)
   }
 }
