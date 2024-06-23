@@ -6,6 +6,7 @@ import { CreateCorporationUseCase } from '@src/corporation/app/usecases/create.u
 import { InternalServerError } from '@shared/infra/errors/common.error'
 import { AuthMiddleware } from '@shared/infra/middlewares/auth.middleware'
 import { CreateCorporationDTO } from '../dto/create.dto'
+import { ApiBearerAuth } from '@nestjs/swagger'
 
 @Controller('corporation')
 @UseGuards(AuthMiddleware)
@@ -18,6 +19,7 @@ export class CreateCorporationController
   ) {}
 
   @Post('v1/new')
+  @ApiBearerAuth('authorization')
   async perform(@Body() dto: CreateCorporationDTO): Promise<IResult> {
     try {
       return await this.useCase.run(dto)
