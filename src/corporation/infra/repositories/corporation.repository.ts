@@ -3,6 +3,7 @@ import { ICorporationRepository } from '@src/corporation/domain/repositories/cor
 import { CorporationEntity } from '../entities/corporation.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { InternalServerErrorException } from '@nestjs/common'
 
 export class CorporationRepository<I>
   implements ICorporationRepository<I, IResult | CorporationEntity>
@@ -20,8 +21,12 @@ export class CorporationRepository<I>
       statusCode: 201
     }
   }
-  find(dto: I): Promise<CorporationEntity> {
-    return this.schema.findOne({ where: dto })
+  async find(dto: I): Promise<CorporationEntity> {
+    try {
+      return await this.schema.findOne({ where: dto })
+    } catch (error) {
+      throw new InternalServerErrorException('Error finding corporation')
+    }
   }
   async update(dto: CorporationEntity): Promise<IResult | CorporationEntity> {
     await this.schema.update(dto.id, dto)
