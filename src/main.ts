@@ -12,6 +12,16 @@ async function bootstrap() {
       .setTitle('Manager++ API')
       .setDescription('A system for employees management')
       .setVersion('0.0.1')
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'authorization',
+          in: 'header'
+        },
+        'authorization'
+      )
       .build()
     const document = SwaggerModule.createDocument(app, config)
     SwaggerModule.setup('swagger-ui', app, document)
