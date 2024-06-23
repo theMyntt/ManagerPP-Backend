@@ -2,7 +2,7 @@ import {
   InvalidInformations,
   AlreadyExists
 } from '@src/user/app/errors/create.error'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 
 describe('Error Classes', () => {
   describe('AlreadyExists', () => {

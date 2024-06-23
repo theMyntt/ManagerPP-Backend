@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { LoginController } from '@src/user/infra/controllers/login.controller'
 import { LoginUseCase } from '@src/user/app/usecases/login.usecase'
 import { LoginUserDTO } from '@src/user/infra/dto/login.dto'
-import { InternalServerError } from '@shared/errors/common.error'
+import { InternalServerError } from '@shared/infra/errors/common.error'
 import { ILoginResponse } from '@src/user/app/usecases/login.usecase'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 
 describe('LoginController', () => {
   let controller: LoginController

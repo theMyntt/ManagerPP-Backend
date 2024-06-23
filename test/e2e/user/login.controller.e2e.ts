@@ -1,7 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import * as request from 'supertest'
 import { ILoginResponse } from '@src/user/app/usecases/login.usecase'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 import { getRepositoryToken } from '@nestjs/typeorm'
 import { AppModuleMock } from '../mock.module'
 import { UserModule } from '@src/user/infra/user.module'

@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { UserRepository } from '@src/user/infra/repositories/user.repository'
 import { UserEntity } from '@src/user/infra/entities/user.entity'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 
 describe('UserRepository', () => {
   let repository: UserRepository<any>

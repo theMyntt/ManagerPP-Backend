@@ -1,4 +1,4 @@
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 
 export interface IErrorContract {
   new: () => IResult

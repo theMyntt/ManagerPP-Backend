@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { IUserRepository } from '@src/user/domain/repositories/user.repository'
 import { UserEntity } from '../entities/user.entity'
 import { Repository } from 'typeorm'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 
 export class UserRepository<I>
   implements IUserRepository<I, IResult | UserEntity>

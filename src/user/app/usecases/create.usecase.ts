@@ -1,6 +1,6 @@
-import { IUseCaseContract } from '@shared/contracts/usecase.contract'
+import { IUseCaseContract } from '@shared/domain/contracts/usecase.contract'
 import { CreateUserDTO } from '../../infra/dto/create.dto'
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 import { Inject } from '@nestjs/common'
 import { UserService } from '@src/user/domain/services/user.service'
 import { InvalidInformations } from '../errors/create.error'

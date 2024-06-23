@@ -1,4 +1,4 @@
-import { IResult } from '@shared/core/result.core'
+import { IResult } from '@shared/domain/core/result.core'
 import { NotFound } from '@src/user/app/errors/login.error'
 
 describe('NotFound', () => {

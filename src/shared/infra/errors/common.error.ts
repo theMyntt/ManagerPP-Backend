@@ -1,5 +1,5 @@
-import { IErrorContract } from '@shared/contracts/error.contract'
-import { IResult } from '@shared/core/result.core'
+import { IErrorContract } from '@shared/domain/contracts/error.contract'
+import { IResult } from '@shared/domain/core/result.core'
 
 export class InternalServerError implements IErrorContract {
   new(): IResult {

@@ -1,7 +1,7 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common'
-import { IControllerContract } from '@shared/contracts/controller.contract'
-import { IResult } from '@shared/core/result.core'
-import { InternalServerError } from '@shared/errors/common.error'
+import { IControllerContract } from '@shared/domain/contracts/controller.contract'
+import { IResult } from '@shared/domain/core/result.core'
+import { InternalServerError } from '@shared/infra/errors/common.error'
 import { LoginUserDTO } from '@src/user/infra/dto/login.dto'
 import {
   ILoginResponse,

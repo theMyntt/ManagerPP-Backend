@@ -1,4 +1,4 @@
-import { IRepositoryContract } from '@shared/contracts/repository.contract'
+import { IRepositoryContract } from '@shared/domain/contracts/repository.contract'
 import { UserEntity } from '@src/user/infra/entities/user.entity'
 
 export interface IUserRepository<I, O>
