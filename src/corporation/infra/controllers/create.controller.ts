@@ -5,6 +5,7 @@ import { IResult } from '@shared/domain/core/result.core'
 import { CreateCorporationUseCase } from '@src/corporation/app/usecases/create.usecase'
 import { InternalServerError } from '@shared/infra/errors/common.error'
 import { AuthMiddleware } from '@shared/infra/middlewares/auth.middleware'
+import { CreateCorporationDTO } from '../dto/create.dto'
 
 @Controller('corporation')
 @UseGuards(AuthMiddleware)
@@ -17,7 +18,7 @@ export class CreateCorporationController
   ) {}
 
   @Post('v1/new')
-  async perform(@Body() dto: CorporationEntity): Promise<IResult> {
+  async perform(@Body() dto: CreateCorporationDTO): Promise<IResult> {
     try {
       return await this.useCase.run(dto)
     } catch (err) {
