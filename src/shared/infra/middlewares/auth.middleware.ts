@@ -4,7 +4,7 @@ import {
   Injectable,
   UnauthorizedException
 } from '@nestjs/common'
-import { UUID } from '@utils/uuid.util'
+import { UUID } from '@utils/uuid.util' // Certifique-se de que este utilitário está correto e disponível
 import { Observable } from 'rxjs'
 
 @Injectable()
@@ -14,14 +14,18 @@ export class AuthMiddleware implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest()
 
-    const auth = request.headers.authorization
+    const authorizationHeader = request.headers.authorization
+    if (!authorizationHeader) {
+      throw new UnauthorizedException('Authorization header is missing')
+    }
 
-    if (!auth) {
+    const token = authorizationHeader.replace('Bearer ', '').trim()
+    if (!token) {
       throw new UnauthorizedException('Forbidden')
     }
 
-    const validate = UUID.validate(auth)
-    if (!validate) {
+    const isValid = UUID.validate(token)
+    if (!isValid) {
       throw new UnauthorizedException('Invalid token')
     }
 
