@@ -3,6 +3,7 @@ import { env } from './config/env'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserEntity } from './user/infra/entities/user.entity'
 import { UserModule } from './user/infra/user.module'
+import { CorporationModule } from './corporation/infra/corporation.module'
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { UserModule } from './user/infra/user.module'
       }),
       inject: []
     }),
-    UserModule
+    UserModule,
+    CorporationModule
   ],
   controllers: []
 })
