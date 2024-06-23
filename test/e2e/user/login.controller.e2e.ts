@@ -37,7 +37,7 @@ describe('[POST] - /user/v1/login', () => {
   describe('perform', () => {
     it('should return login response', async () => {
       await userEntity.delete({})
-      userEntity.save({
+      await userEntity.save({
         createdAt: date,
         updatedAt: date,
         id: faker.string.uuid(),
