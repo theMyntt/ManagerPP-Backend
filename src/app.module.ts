@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserEntity } from './user/infra/entities/user.entity'
 import { UserModule } from './user/infra/user.module'
 import { CorporationModule } from './corporation/infra/corporation.module'
+import { CorporationEntity } from './corporation/infra/entities/corporation.entity'
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { CorporationModule } from './corporation/infra/corporation.module'
         username: env.MYSQL_USERNAME,
         password: env.MYSQL_PASSWORD,
         database: env.MYSQL_DATABASE,
-        entities: [UserEntity],
+        entities: [UserEntity, CorporationEntity],
         synchronize: env.MYSQL_SYNCRONIZE
       }),
       inject: []
