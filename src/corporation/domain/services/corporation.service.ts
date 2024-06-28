@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { DeleteCorporationDTO } from '@src/corporation/infra/dto/delete.dto'
 import { CorporationEntity } from '@src/corporation/infra/entities/corporation.entity'
 import { CorporationRepository } from '@src/corporation/infra/repositories/corporation.repository'
 
@@ -14,5 +15,18 @@ export class CorporationService {
 
     await this.repo.create(dto)
     return true
+  }
+
+  async delete(dto: DeleteCorporationDTO): Promise<boolean> {
+    const data = await this.repo.find(dto)
+
+    if (!data) return false
+
+    try {
+      await this.repo.delete(data)
+      return true
+    } catch {
+      return false
+    }
   }
 }
