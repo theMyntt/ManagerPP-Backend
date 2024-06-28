@@ -25,7 +25,7 @@ export class CorporationRepository<I>
     try {
       return await this.schema.findOne({ where: dto })
     } catch (error) {
-      throw new InternalServerErrorException('Error finding corporation')
+      return null
     }
   }
   async update(dto: CorporationEntity): Promise<IResult | CorporationEntity> {
