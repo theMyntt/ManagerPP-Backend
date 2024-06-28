@@ -16,7 +16,7 @@ create table users(
 );
 
 insert into users values
-	('311e6eda-266e-4423-98e2-236b01fd6fee', 'ADMIN1', 'ADMIN', 'admin@admin.org', '12345678', curdate(), curdate());
+	('311e6eda-266e-4423-98e2-236b01fd6fee', '12345678', 'ADMIN1', 'ADMIN', 'admin@admin.org', curdate(), curdate());
 
 create table corporation(
 	id varchar(255) not null,
