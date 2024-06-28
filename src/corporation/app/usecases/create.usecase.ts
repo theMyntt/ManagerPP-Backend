@@ -5,6 +5,7 @@ import { CorporationService } from '@src/corporation/domain/services/corporation
 import { CreateCorporationDTO } from '@src/corporation/infra/dto/create.dto'
 import { CorporationEntity } from '@src/corporation/infra/entities/corporation.entity'
 import { UUID } from '@utils/uuid.util'
+import { CantCreate } from '../errors/create.error'
 
 export class CreateCorporationUseCase
   implements IUseCaseContract<CreateCorporationDTO, IResult>
@@ -22,11 +23,7 @@ export class CreateCorporationUseCase
     entity.phone = dto.phone
 
     const brute = await this.service.create(entity)
-    if (!brute)
-      return {
-        message: 'We cant create this corporation',
-        statusCode: 409
-      }
+    if (!brute) throw new CantCreate()
 
     return {
       message: 'Corporation succefully registered',
