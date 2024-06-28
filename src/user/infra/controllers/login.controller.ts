@@ -23,10 +23,6 @@ export class LoginController
   @ApiResponse({ status: 201, description: 'The user has been found' })
   @ApiResponse({ status: 404, description: 'User not found' })
   async perform(@Body() dto: LoginUserDTO): Promise<ILoginResponse | IResult> {
-    try {
-      return this.useCase.run(dto)
-    } catch {
-      return new InternalServerError().new()
-    }
+    return this.useCase.run(dto)
   }
 }

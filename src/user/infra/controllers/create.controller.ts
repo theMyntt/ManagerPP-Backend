@@ -20,10 +20,6 @@ export class CreateController
   @ApiResponse({ status: 201, description: 'The user has been created' })
   @ApiResponse({ status: 409, description: 'User already exists' })
   async perform(@Body() dto: CreateUserDTO): Promise<IResult> {
-    try {
-      return this.useCase.run(dto)
-    } catch {
-      return new InternalServerError().new()
-    }
+    return this.useCase.run(dto)
   }
 }

@@ -3,7 +3,7 @@ import { CreateUserDTO } from '../../infra/dto/create.dto'
 import { IResult } from '@shared/domain/core/result.core'
 import { Inject } from '@nestjs/common'
 import { UserService } from '@src/user/domain/services/user.service'
-import { InvalidInformations } from '../errors/create.error'
+import { CantCreate, InvalidInformations } from '../errors/create.error'
 import { UserEntity } from '@src/user/infra/entities/user.entity'
 import { UUID } from '@shared/utils/uuid.util'
 import { StringUtil } from '@shared/utils/string.util'
@@ -33,12 +33,7 @@ export class CreateUseCase
 
     const brute = await this.service.create(entity)
 
-    if (!brute) {
-      return {
-        message: 'User already exists',
-        statusCode: 409
-      }
-    }
+    if (!brute) throw new CantCreate()
 
     return {
       message: 'User created',

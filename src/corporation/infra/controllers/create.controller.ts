@@ -1,4 +1,11 @@
-import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpException,
+  Inject,
+  Post,
+  UseGuards
+} from '@nestjs/common'
 import { IControllerContract } from '@shared/domain/contracts/controller.contract'
 import { CorporationEntity } from '../entities/corporation.entity'
 import { IResult } from '@shared/domain/core/result.core'
@@ -22,10 +29,6 @@ export class CreateCorporationController
   @Post('v1/new')
   @ApiBearerAuth('authorization')
   async perform(@Body() dto: CreateCorporationDTO): Promise<IResult> {
-    try {
-      return await this.useCase.run(dto)
-    } catch (err) {
-      return new InternalServerError().new()
-    }
+    return await this.useCase.run(dto)
   }
 }
