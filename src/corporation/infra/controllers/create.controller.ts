@@ -13,7 +13,7 @@ import { CreateCorporationUseCase } from '@src/corporation/app/usecases/create.u
 import { InternalServerError } from '@shared/infra/errors/common.error'
 import { AuthMiddleware } from '@shared/infra/middlewares/auth.middleware'
 import { CreateCorporationDTO } from '../dto/create.dto'
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('corporation')
 @UseGuards(AuthMiddleware)
@@ -28,6 +28,8 @@ export class CreateCorporationController
 
   @Post('v1/new')
   @ApiBearerAuth('authorization')
+  @ApiResponse({ status: 201, description: 'The corporation has been created' })
+  @ApiResponse({ status: 409, description: 'Corporation already exists' })
   async perform(@Body() dto: CreateCorporationDTO): Promise<IResult> {
     return await this.useCase.run(dto)
   }
