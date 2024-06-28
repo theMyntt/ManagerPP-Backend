@@ -6,10 +6,11 @@ import { CreateCorporationUseCase } from '@src/corporation/app/usecases/create.u
 import { InternalServerError } from '@shared/infra/errors/common.error'
 import { AuthMiddleware } from '@shared/infra/middlewares/auth.middleware'
 import { CreateCorporationDTO } from '../dto/create.dto'
-import { ApiBearerAuth } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 
 @Controller('corporation')
 @UseGuards(AuthMiddleware)
+@ApiTags('Corporation Management')
 export class CreateCorporationController
   implements IControllerContract<CorporationEntity, IResult>
 {
