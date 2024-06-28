@@ -25,3 +25,15 @@ export class InvalidInformations implements IErrorContract {
     )
   }
 }
+
+export class CantCreate extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'We cant create this user',
+        statusCode: 409
+      },
+      409
+    )
+  }
+}
