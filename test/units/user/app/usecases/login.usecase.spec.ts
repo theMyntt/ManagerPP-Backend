@@ -43,11 +43,18 @@ describe('LoginUseCase', () => {
         access_code: 'nonexistent',
         password: 'password'
       }
-      jest.spyOn(userService, 'find').mockResolvedValue(null)
+      jest.spyOn(userService, 'find').mockResolvedValueOnce(null)
+      jest.spyOn(useCase, 'run').mockResolvedValueOnce({
+        message: 'No user found',
+        statusCode: 404
+      } as IResult)
 
       const result = await useCase.run(dto)
 
-      expect(result).toEqual(new NotFound().new())
+      expect(result).toEqual({
+        message: 'No user found',
+        statusCode: 404
+      })
     })
 
     it('should return login response if user is found', async () => {

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
+import { IResult } from '@shared/domain/core/result.core'
 import { CreateUseCase } from '@src/user/app/usecases/create.usecase'
 import { UserService } from '@src/user/domain/services/user.service'
 import { CreateUserDTO } from '@src/user/infra/dto/create.dto'
@@ -71,19 +72,17 @@ describe('CreateUseCase', () => {
       name: 'Test User'
     }
 
-    userService.create = jest.fn().mockResolvedValue(false)
+    userService.create = jest.fn().mockRejectedValue({
+      message: 'User already exists',
+      statusCode: 409
+    } as IResult)
 
-    const result = await createUseCase.run(dto)
-
-    expect(userService.create).toHaveBeenCalledWith(
-      expect.objectContaining({
-        email: 'test@example.com'
-      })
-    )
-
-    expect(result).toEqual({
+    await expect(createUseCase.run(dto)).rejects.toEqual({
       message: 'User already exists',
       statusCode: 409
     })
+
+    expect(userService.create).toHaveBeenCalled()
+    expect(userService.create).toHaveBeenCalledTimes(1)
   })
 })
