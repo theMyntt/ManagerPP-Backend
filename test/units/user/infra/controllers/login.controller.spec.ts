@@ -5,6 +5,8 @@ import { LoginUserDTO } from '@src/user/infra/dto/login.dto'
 import { InternalServerError } from '@shared/infra/errors/common.error'
 import { ILoginResponse } from '@src/user/app/usecases/login.usecase'
 import { IResult } from '@shared/domain/core/result.core'
+import { NotFound } from '@src/user/app/errors/login.error'
+import { HttpException } from '@nestjs/common'
 
 describe('LoginController', () => {
   let controller: LoginController
@@ -51,18 +53,21 @@ describe('LoginController', () => {
     expect(result).toEqual(response)
   })
 
-  it('should return InternalServerError on exception', async () => {
-    const dto: LoginUserDTO = {
-      access_code: 'validCode',
-      password: 'validPassword'
+  it('should return a failure if user dont exists', async () => {
+    const response: IResult = {
+      message: ['User not found'],
+      statusCode: 404
     }
+    jest.spyOn(loginUseCase, 'run').mockResolvedValue(response)
 
-    jest.spyOn(loginUseCase, 'run').mockImplementation(() => {
-      throw new Error()
+    const result = await controller.perform({
+      access_code: 'invalidCode',
+      password: 'invalidPassword'
     })
 
-    const result = await controller.perform(dto)
-
-    expect(result).toEqual(new InternalServerError().new())
+    expect(loginUseCase.run).toHaveBeenCalledWith({
+      access_code: 'invalidCode',
+      password: 'invalidPassword'
+    })
   })
 })
