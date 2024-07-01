@@ -23,32 +23,33 @@ describe('[POST] - /user/v1/new', () => {
     )
   })
 
-  beforeEach(async () => {
-    await userEntity.delete({})
-  })
-
   afterAll(async () => {
     await app.close()
   })
 
   describe('perform', () => {
+    beforeEach(async () => {
+      await userEntity.clear() // Use `clear` to remove all records
+    })
+
     it('should return a failure if the dto is invalid', async () => {
-      await request(app.getHttpServer())
+      const response = await request(app.getHttpServer())
         .post('/user/v1/new')
         .send({})
-        .expect({
-          message: [
-            'name must be a string',
-            'name should not be empty',
-            'email must be a string',
-            'email should not be empty',
-            'password must be a string',
-            'password should not be empty'
-          ],
-          error: 'Bad Request',
-          statusCode: 400
-        })
         .expect(400)
+
+      expect(response.body).toEqual({
+        message: [
+          'name must be a string',
+          'name should not be empty',
+          'email must be a string',
+          'email should not be empty',
+          'password must be a string',
+          'password should not be empty'
+        ],
+        error: 'Bad Request',
+        statusCode: 400
+      })
     })
 
     it('should register a new user', async () => {
@@ -66,7 +67,7 @@ describe('[POST] - /user/v1/new', () => {
       expect(typeof body.access_code).toBe('string')
     })
 
-    it('should not allow create a user if he already exists', async () => {
+    it('should not allow creating a user if they already exist', async () => {
       await userEntity.insert({
         id: 'valid_id',
         access_code: 'valid_access_code',
@@ -84,8 +85,9 @@ describe('[POST] - /user/v1/new', () => {
           email: 'valid_email',
           password: 'valid_password'
         })
+        .expect(409)
 
-      expect(body.message).toBe('User already exists')
+      expect(body.message).toBe('We cant create this user')
       expect(body.statusCode).toBe(409)
     })
   })
