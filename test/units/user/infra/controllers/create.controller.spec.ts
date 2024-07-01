@@ -7,7 +7,6 @@ import { UserService } from '@src/user/domain/services/user.service'
 import { UserRepository } from '@src/user/infra/repositories/user.repository'
 import { Repository } from 'typeorm'
 import { UserEntity } from '@src/user/infra/entities/user.entity'
-import { InvalidInformations } from '@src/user/app/errors/create.error'
 
 jest.mock('@src/user/infra/controllers/create.controller')
 

@@ -5,10 +5,8 @@ import {
 } from '@src/user/app/usecases/login.usecase'
 import { UserService } from '@src/user/domain/services/user.service'
 import { LoginUserDTO } from '@src/user/infra/dto/login.dto'
-import { NotFound } from '@src/user/app/errors/login.error'
 import { IResult } from '@shared/domain/core/result.core'
 import { UserEntity } from '@src/user/infra/entities/user.entity'
-import { UUID } from '@shared/utils/uuid.util'
 
 // jest.mock('@src/user/app/usecases/login.usecase')
 

@@ -3,7 +3,6 @@ import { ICorporationRepository } from '@src/corporation/domain/repositories/cor
 import { CorporationEntity } from '../entities/corporation.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { InternalServerErrorException } from '@nestjs/common'
 
 export class CorporationRepository<I>
   implements ICorporationRepository<I, IResult | CorporationEntity>

@@ -1,4 +1,4 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common'
+import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { ILoginResponse } from '@src/user/app/usecases/login.usecase'
 import { IResult } from '@shared/domain/core/result.core'

@@ -1,16 +1,8 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  Inject,
-  Post,
-  UseGuards
-} from '@nestjs/common'
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common'
 import { IControllerContract } from '@shared/domain/contracts/controller.contract'
 import { CorporationEntity } from '../entities/corporation.entity'
 import { IResult } from '@shared/domain/core/result.core'
 import { CreateCorporationUseCase } from '@src/corporation/app/usecases/create.usecase'
-import { InternalServerError } from '@shared/infra/errors/common.error'
 import { AuthMiddleware } from '@shared/infra/middlewares/auth.middleware'
 import { CreateCorporationDTO } from '../dto/create.dto'
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger'
