@@ -73,7 +73,7 @@
     },
     "moduleNameMapper": {
       "^@config/(.*)$": "<rootDir>/src/config/$1",
-      "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+      "^@utils/(.*)$": "<rootDir>/src/shared/utils/$1",
       "^@shared/(.*)$": "<rootDir>/src/shared/$1",
       "^@src/(.*)$": "<rootDir>/src/$1"
     },
